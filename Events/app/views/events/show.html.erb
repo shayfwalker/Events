@@ -1,0 +1,64 @@
+<style type="text/css">
+	#discussion{
+		border:1px solid black; 
+		height:100px;
+		width:300px;
+		overflow:scroll; 
+	}
+
+</style>
+
+
+
+
+
+
+
+
+<a href="/users/destroy">LogOut</a>
+<a href="/events/index">Go back</a>
+
+<h1><%= @events.name %></h1>
+<h3><%= @events.user.first_name%></h3>
+
+<h3><%= @events.location %></h3>
+<h3><%= @events.date %></h3>
+<p>People who are joining the event <%= @count %></p>
+
+<div>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Location</th>
+			<th></th>
+		</tr>
+		<% @attending.each do |attend| %>	
+		<tr>
+			<th><%= attend.first_name%></th>
+			<th><%= attend.location %></th>
+		</tr>
+		<% end %>	
+	</table>
+	
+
+</div>
+	<h1>Discussion about this event:</h1>
+
+
+<div id="discussion">
+<% @comments.each do |comment|  %>
+
+<p><%= comment.user.first_name %> <%= comment.description %></p>
+<% end %>
+</div>
+
+
+<form action="/comments/<%=@events.id %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<label>
+	Add Comment:<br>
+	<textarea name="description"></textarea><br>
+	</label><br>
+	<input type="submit" name="Submit">
+</form>
+</div>

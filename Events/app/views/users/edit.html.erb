@@ -1,0 +1,22 @@
+<a href="/events/index">Events Dashboard</a>
+<a href="#">Logout</a>
+
+<h1>Edit Your Profile</h1>
+<form action="/users/update/<%= @users.id %>" method="post">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<input type="hidden" name="_method" value="patch">
+	<label>
+		First Name:<input type="text" name="user[first_name]" value="<%= @users.first_name %>">
+	</label><br>
+	<label>
+		Last Name:<input type="text" name="product[name]" value="<%= @users.last_name %>">
+	</label><br>
+	<label>
+		Email:<input type="text" name="user[email]" value="<%= @users.email %>">
+	</label><br>
+	<label>
+		Location:<input type="text" name="user[location]" value="<%= @users.location %>">
+	</label><br>
+	
+	<input type="submit" name="Create">
+</form>
